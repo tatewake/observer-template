@@ -25,10 +25,14 @@
  
  */
 
-#include "Base/package.h"
-
-#include "Test/package.h"
+#include <cassert>
+#include <stdio.h>
 #include <vector>
+
+#include "tSubject.h"
+#include "tObserver.h"
+#include "tSubjectImpl.h"
+#include "tObserverImpl.h"
 
 #if __cplusplus >= 201103L
 #include <utility>
@@ -347,35 +351,35 @@ public:
 };
 #endif
 
-class tSubjectTests : public TestFixture<tSubjectTests>
+class tSubjectTests
 {
 public:
-	TEST_FIXTURE( tSubjectTests )
+	tSubjectTests()
 	{
-		TEST_CASE( testAttachDetachAndNotify );
-        TEST_CASE( testDetachAll );
-		TEST_CASE( testDetachDuringNotify );
-        TEST_CASE( testDetachAllDuringNotify );
-		TEST_CASE( testDeleteSubjectDuringNotify );
-        TEST_CASE( testAttachSubjectDuringNotify );
+		testAttachDetachAndNotify();
+        testDetachAll();
+		testDetachDuringNotify();
+        testDetachAllDuringNotify();
+		testDeleteSubjectDuringNotify();
+        testAttachSubjectDuringNotify();
 
-        TEST_CASE( testAttachDetachAttachDuringNotify );
-        TEST_CASE( testAttachDetachAllAttachDuringNotify );
+        testAttachDetachAttachDuringNotify();
+        testAttachDetachAllAttachDuringNotify();
 
-        TEST_CASE( testCopyCtor );
-        TEST_CASE( testCopyAssign );
+        testCopyCtor();
+        testCopyAssign();
 
 #if __cplusplus >= 201103L
-        TEST_CASE( testMoveCtor );
-        TEST_CASE( testMoveAssign );
+        testMoveCtor();
+        testMoveAssign();
 #endif
 
-        TEST_CASE( testCopyCtor2DuringNotify1 );
-        TEST_CASE( testCopyAssign2DuringNotify1 );
+        testCopyCtor2DuringNotify1();
+        testCopyAssign2DuringNotify1();
 
 #if __cplusplus >= 201103L
-        TEST_CASE( testMoveCtor2DuringNotify1 );
-        TEST_CASE( testMoveAssign2DuringNotify1 );
+        testMoveCtor2DuringNotify1();
+        testMoveAssign2DuringNotify1();
 #endif
     }
 
@@ -396,15 +400,17 @@ public:
         source.detach(&listener);
         source.notify(5);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testAttachDetachAndNotify passed\n");
     }
 
     void testDetachAll()
@@ -428,15 +434,17 @@ public:
         source.detachAll();
         source.notify(5);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testDetachAll passed\n");
     }
 
     void testDetachDuringNotify()
@@ -513,15 +521,17 @@ public:
         source.notify(7);
         source.detachAll(); detachA.reset(); detachB.reset(); detachC.reset();
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testDetachDuringNotify passed\n");
     }
 
     void testDetachAllDuringNotify()
@@ -576,15 +586,17 @@ public:
         source.notify(5);
         source.detachAll(); detachAll.reset();
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testDetachAllDuringNotify passed\n");
     }
 
     void testDeleteSubjectDuringNotify()
@@ -636,15 +648,17 @@ public:
         source->attach(&listenerC);
         source->notify(4);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testDeleteSubjectDuringNotify passed\n");
     }
 
     void testAttachSubjectDuringNotify()
@@ -661,15 +675,17 @@ public:
 
         source.attach(&listener);
         source.notify(4);
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testAttachSubjectDuringNotify passed\n");
     }
 
     void testAttachDetachAttachDuringNotify()
@@ -726,15 +742,17 @@ public:
         source.notify(8);
         source.detachAll(); attachA.reset(); detachA.reset(); attachAAgain.reset();
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testAttachDetachAttachDuringNotify passed\n");
     }
 
     void testAttachDetachAllAttachDuringNotify()
@@ -787,15 +805,17 @@ public:
         source.notify(8);
         source.detachAll(); attachA.reset(); detachAllAndAttachA.reset();
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testAttachDetachAllAttachDuringNotify passed\n");
     }
 
     void testCopyCtor()
@@ -823,15 +843,17 @@ public:
         source.notify(8);
         source2.notify(9);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyCtor passed\n");
     }
 
     void testCopyAssign()
@@ -865,15 +887,17 @@ public:
         source.notify(11);
         source2.notify(12);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyAssign passed\n");
     }
 
 #if __cplusplus >= 201103L
@@ -899,15 +923,17 @@ public:
         source.notify(6);
         source2.notify(7);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveCtor passed\n");
     }
 
     void testMoveAssign()
@@ -938,15 +964,17 @@ public:
         source.notify(9);
         source2.notify(10);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveAssign passed\n");
     }
 #endif
 
@@ -977,15 +1005,17 @@ public:
 
         delete source2;
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyCtor2DuringNotify1 passed\n");
     }
 
     void testCopyAssign2DuringNotify1()
@@ -1013,15 +1043,17 @@ public:
         source.notify(8);
         source2.notify(9);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyAssign2DuringNotify1 passed\n");
     }
 
 #if __cplusplus >= 201103L
@@ -1049,15 +1081,17 @@ public:
 
         delete source2;
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveCtor2DuringNotify1 passed\n");
     }
 
     void testMoveAssign2DuringNotify1()
@@ -1082,17 +1116,24 @@ public:
         source.notify(6);
         source2.notify(7);
 
-        ASSERT(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tSTNotifications[i] == expectedResult[i]);
+                assert(tSTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveAssign2DuringNotify1 passed\n");
     }
 #endif
 };
 
-REGISTER_FIXTURE( tSubjectTests );
+void RunSubjectTests()
+{
+    printf("*** Running tSubjectTests...\n");
+    tSubjectTests();
+}
+

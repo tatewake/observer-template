@@ -25,10 +25,14 @@
  
  */
 
-#include "Base/package.h"
-
-#include "Test/package.h"
+#include <cassert>
+#include <stdio.h>
 #include <vector>
+
+#include "tSubject.h"
+#include "tObserver.h"
+#include "tSubjectImpl.h"
+#include "tObserverImpl.h"
 
 #if __cplusplus >= 201103L
 #include <utility>
@@ -98,19 +102,19 @@ public:
     }
 };
 
-class tObserverTests : public TestFixture<tObserverTests>
+class tObserverTests
 {
 public:
-	TEST_FIXTURE( tObserverTests )
+	tObserverTests()
 	{
-        TEST_CASE( testUpdate );
+        testUpdate();
 
-        TEST_CASE( testCopyCtor );
-		TEST_CASE( testCopyAssign );
+        testCopyCtor();
+		testCopyAssign();
 
 #if __cplusplus >= 201103L
-        TEST_CASE( testMoveCtor );
-        TEST_CASE( testMoveAssign );
+        testMoveCtor();
+        testMoveAssign();
 #endif
     }
 
@@ -129,15 +133,17 @@ public:
         source.detach(&listener);
         source.notify(3);
 
-        ASSERT(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tOTNotifications[i] == expectedResult[i]);
+                assert(tOTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testUpdate passed\n");
     }
 
     void testCopyCtor()
@@ -165,15 +171,17 @@ public:
         source.detach(&listener);
         source.notify(5);
 
-        ASSERT(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tOTNotifications[i] == expectedResult[i]);
+                assert(tOTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyCtor passed\n");
     }
 
     void testCopyAssign()
@@ -203,15 +211,17 @@ public:
         source.detach(&listener);
         source.notify(5);
 
-        ASSERT(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tOTNotifications[i] == expectedResult[i]);
+                assert(tOTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testCopyAssign passed\n");
     }
 
 #if __cplusplus >= 201103L
@@ -239,15 +249,17 @@ public:
         source.notify(4);
         source.notify(5);
 
-        ASSERT(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tOTNotifications[i] == expectedResult[i]);
+                assert(tOTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveCtor passed\n");
     }
 
     void testMoveAssign()
@@ -276,17 +288,37 @@ public:
         source.notify(4);
         source.notify(5);
 
-        ASSERT(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
+        assert(tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t));
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
             for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
-                ASSERT(tOTNotifications[i] == expectedResult[i]);
+                assert(tOTNotifications[i] == expectedResult[i]);
             }
         }
+
+        printf("*** ::testMoveAssign passed\n");
     }
 #endif
 };
 
-REGISTER_FIXTURE( tObserverTests );
+void RunSubjectTests();
+
+void RunObserverTests()
+{
+    printf("*** Running tObserverTests...\n");
+    tObserverTests();
+}
+
+class tSubjectTests;
+int main (int argc, char *argv[])
+{
+    RunObserverTests();
+    RunSubjectTests();
+
+    printf("*** All tests passed!\n");
+
+    return 0;
+}
+
