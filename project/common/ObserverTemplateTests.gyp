@@ -9,10 +9,7 @@
 		'sources': [
 			'../../tObserverTests.cc',
 			'../../tSubjectTests.cc',
-			'../../tSubject.h',
 			'../../tObserver.h',
-			'../../tSubjectImpl.h',
-			'../../tObserverImpl.h',
 		],	# sources
 
 		'include_dirs': [

@@ -29,10 +29,7 @@
 #include <stdio.h>
 #include <vector>
 
-#include "tSubject.h"
 #include "tObserver.h"
-#include "tSubjectImpl.h"
-#include "tObserverImpl.h"
 
 #if __cplusplus >= 201103L
 #include <utility>
