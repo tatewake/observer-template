@@ -29,6 +29,7 @@
 
 #include <list>
 #include <algorithm>
+#include <cassert>
 
 template<class T> class tSubject;
 template<class T> class tObserver;

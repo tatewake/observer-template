@@ -25,7 +25,6 @@
  
  */
 
-#include <cassert>
 #include <stdio.h>
 #include <vector>
 
