@@ -218,32 +218,37 @@ void tSubject<T>::detachAll()
 template<class T>
 void tSubject<T>::notify(const T msg)
 {
-    bool subjectDeleted = false;
+    assert(!mCurrentlyNotifying);
 
-    mCurrentlyNotifying = true;
-    mSubjectDeletedPtr = &subjectDeleted;
-
-    for(typename ListType::iterator iter = mObservers.begin(); iter != mObservers.end(); iter++)
+    if (!mCurrentlyNotifying)
     {
-        if (*iter)
+        bool subjectDeleted = false;
+
+        mCurrentlyNotifying = true;
+        mSubjectDeletedPtr = &subjectDeleted;
+
+        for(typename ListType::iterator iter = mObservers.begin(); iter != mObservers.end(); iter++)
         {
-            (*iter)->update(msg);
+            if (*iter)
+            {
+                (*iter)->update(msg);
+            }
+
+            if (subjectDeleted)
+            {
+                break;
+            }
         }
 
-        if (subjectDeleted)
+        if (!subjectDeleted)
         {
-            break;
+            mSubjectDeletedPtr = NULL;
+            mCurrentlyNotifying = false;
+
+            mObservers.remove(NULL);
+            mObservers.insert(mObservers.end(), mNewObservers.begin(), mNewObservers.end());
+            mNewObservers.clear();
         }
-    }
-
-    if (!subjectDeleted)
-    {
-        mSubjectDeletedPtr = NULL;
-        mCurrentlyNotifying = false;
-
-        mObservers.remove(NULL);
-        mObservers.insert(mObservers.end(), mNewObservers.begin(), mNewObservers.end());
-        mNewObservers.clear();
     }
 }
 
