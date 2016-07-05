@@ -38,30 +38,30 @@
 static std::vector<size_t> tOTNotifications;
 
 class tOTSubject
-: public tSubject<const uint32_t&>
+: public tSubject<const size_t&>
 {
 public:
     tOTSubject() { }
-    tOTSubject(const tOTSubject& other) : tSubject<const uint32_t &>(other) { }
+    tOTSubject(const tOTSubject& other) : tSubject<const size_t&>(other) { }
     virtual ~tOTSubject() { }
 
-    tOTSubject& operator=(const tOTSubject& other) { return static_cast<tOTSubject&>(tSubject<const uint32_t &>::operator=(other)); }
+    tOTSubject& operator=(const tOTSubject& other) { return static_cast<tOTSubject&>(tSubject<const size_t&>::operator=(other)); }
 
 #if __cplusplus >= 201103L
-    tOTSubject(tOTSubject&& other) : tSubject<const uint32_t &>(std::move(other)) { }
-    tOTSubject& operator=(tOTSubject&& other) { return static_cast<tOTSubject&>(tSubject<const uint32_t &>::operator=(std::move(other))); }
+    tOTSubject(tOTSubject&& other) : tSubject<const size_t&>(std::move(other)) { }
+    tOTSubject& operator=(tOTSubject&& other) { return static_cast<tOTSubject&>(tSubject<const size_t&>::operator=(std::move(other))); }
 #endif
 };
 
 class tOTObserver
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
-    uint32_t mBase;
+    size_t mBase;
 
 public:
-    tOTObserver(uint32_t base) : mBase(base) { }
-    tOTObserver(const tOTObserver& other) : tObserver<const uint32_t &>(other)
+    tOTObserver(size_t base) : mBase(base) { }
+    tOTObserver(const tOTObserver& other) : tObserver<const size_t&>(other)
     {
         mBase = other.mBase;
     }
@@ -71,11 +71,11 @@ public:
     tOTObserver& operator=(const tOTObserver& other)
     {
         mBase = other.mBase;
-        return static_cast<tOTObserver&>(tObserver<const uint32_t &>::operator=(other));
+        return static_cast<tOTObserver&>(tObserver<const size_t&>::operator=(other));
     }
 
 #if __cplusplus >= 201103L
-    tOTObserver(tOTObserver&& other) : tObserver<const uint32_t &>(std::move(other))
+    tOTObserver(tOTObserver&& other) : tObserver<const size_t&>(std::move(other))
     {
         mBase = other.mBase;
         other.mBase = 0;
@@ -84,16 +84,16 @@ public:
     {
         mBase = other.mBase;
         other.mBase = 0;
-        return static_cast<tOTObserver&>(tObserver<const uint32_t &>::operator=(std::move(other)));
+        return static_cast<tOTObserver&>(tObserver<const size_t&>::operator=(std::move(other)));
     }
 #endif
 
-    void setBase(uint32_t base)
+    void setBase(size_t base)
     {
         mBase = base;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tOTNotifications.push_back(msg + mBase);
     }
@@ -134,7 +134,7 @@ public:
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tOTNotifications[i] == expectedResult[i]);
             }
@@ -172,7 +172,7 @@ public:
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tOTNotifications[i] == expectedResult[i]);
             }
@@ -212,7 +212,7 @@ public:
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tOTNotifications[i] == expectedResult[i]);
             }
@@ -250,7 +250,7 @@ public:
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tOTNotifications[i] == expectedResult[i]);
             }
@@ -289,7 +289,7 @@ public:
 
         if (tOTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tOTNotifications[i] == expectedResult[i]);
             }

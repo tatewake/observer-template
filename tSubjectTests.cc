@@ -38,47 +38,47 @@
 static std::vector<size_t> tSTNotifications;
 
 class tSubjectTestClass
-: public tSubject<const uint32_t&>
+: public tSubject<const size_t&>
 {
 public:
     tSubjectTestClass() { }
-    tSubjectTestClass(const tSubjectTestClass& other) : tSubject<const uint32_t &>(other) { }
+    tSubjectTestClass(const tSubjectTestClass& other) : tSubject<const size_t&>(other) { }
     virtual ~tSubjectTestClass() { }
 
-    tSubjectTestClass& operator=(const tSubjectTestClass& other) { return static_cast<tSubjectTestClass&>(tSubject<const uint32_t &>::operator=(other)); }
+    tSubjectTestClass& operator=(const tSubjectTestClass& other) { return static_cast<tSubjectTestClass&>(tSubject<const size_t&>::operator=(other)); }
 
 #if __cplusplus >= 201103L
-    tSubjectTestClass(tSubjectTestClass&& other) : tSubject<const uint32_t &>(std::move(other)) { }
-    tSubjectTestClass& operator=(tSubjectTestClass&& other) { return static_cast<tSubjectTestClass&>(tSubject<const uint32_t &>::operator=(std::move(other))); }
+    tSubjectTestClass(tSubjectTestClass&& other) : tSubject<const size_t&>(std::move(other)) { }
+    tSubjectTestClass& operator=(tSubjectTestClass&& other) { return static_cast<tSubjectTestClass&>(tSubject<const size_t&>::operator=(std::move(other))); }
 #endif
 };
 
 class tObserverTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
-    uint32_t mBase;
+    size_t mBase;
 
 public:
-    tObserverTestClass(uint32_t base) : mBase(base) { }
+    tObserverTestClass(size_t base) : mBase(base) { }
     virtual ~tObserverTestClass() { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg + mBase);
     }
 };
 
 class tDetachObserverOnUpdateTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
-    tSubject<const uint32_t&>*  mSubject;
-    tObserver<const uint32_t&>* mObserver;
+    tSubject<const size_t&>*  mSubject;
+    tObserver<const size_t&>* mObserver;
     bool                        mDidRun;
 
 public:
-    tDetachObserverOnUpdateTestClass(tSubject<const uint32_t&>* sub, tObserver<const uint32_t&>* obs) : mSubject(sub), mObserver(obs), mDidRun(false) { }
+    tDetachObserverOnUpdateTestClass(tSubject<const size_t&>* sub, tObserver<const size_t&>* obs) : mSubject(sub), mObserver(obs), mDidRun(false) { }
     virtual ~tDetachObserverOnUpdateTestClass() { }
 
     void reset()
@@ -86,7 +86,7 @@ public:
         mDidRun = false;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         if (!mDidRun)
@@ -98,14 +98,14 @@ public:
 };
 
 class tDetachAllOnUpdateTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
-    tSubject<const uint32_t&>*  mSubject;
+    tSubject<const size_t&>*  mSubject;
     bool                        mDidRun;
 
 public:
-    tDetachAllOnUpdateTestClass(tSubject<const uint32_t&>* sub) : mSubject(sub), mDidRun(false) { }
+    tDetachAllOnUpdateTestClass(tSubject<const size_t&>* sub) : mSubject(sub), mDidRun(false) { }
     virtual ~tDetachAllOnUpdateTestClass() { }
 
     void reset()
@@ -113,7 +113,7 @@ public:
         mDidRun = false;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         if (!mDidRun)
@@ -125,21 +125,21 @@ public:
 };
 
 class tDeleteSubjectOnUpdateTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
-    tSubject<const uint32_t&>*   mSubject;
+    tSubject<const size_t&>*   mSubject;
 
 public:
-    tDeleteSubjectOnUpdateTestClass(tSubject<const uint32_t&>* sub = NULL) : mSubject(sub) { }
+    tDeleteSubjectOnUpdateTestClass(tSubject<const size_t&>* sub = NULL) : mSubject(sub) { }
     virtual ~tDeleteSubjectOnUpdateTestClass() { }
 
-    void reset(tSubject<const uint32_t&>* sub)
+    void reset(tSubject<const size_t&>* sub)
     {
         mSubject = sub;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         assert(mSubject);
@@ -148,16 +148,16 @@ public:
 };
 
 class AttachNewDuringNotify
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 public:
     tObserverTestClass mSecond;
-    tSubject<const uint32_t&>* mSubject;
+    tSubject<const size_t&>* mSubject;
 
 public:
-    AttachNewDuringNotify(tSubject<const uint32_t&>* newSubject) : mSecond(10), mSubject(newSubject) { }
+    AttachNewDuringNotify(tSubject<const size_t&>* newSubject) : mSecond(10), mSubject(newSubject) { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg);
         mSubject->attach(&mSecond);
@@ -165,22 +165,22 @@ public:
 };
 
 class DetachExistingDuringNotify
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 public:
-    tSubject<const uint32_t&>* mSubject;
-    tObserver<const uint32_t&>* mObserver;
+    tSubject<const size_t&>* mSubject;
+    tObserver<const size_t&>* mObserver;
     bool mPaused;
 
 public:
-    DetachExistingDuringNotify(tSubject<const uint32_t&>* newSubject, tObserver<const uint32_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
+    DetachExistingDuringNotify(tSubject<const size_t&>* newSubject, tObserver<const size_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
 
     void reset()
     {
         mPaused = false;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         if (!mPaused)
@@ -192,22 +192,22 @@ public:
 };
 
 class DetachAllAndAttachExistingDuringNotify
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 public:
-    tSubject<const uint32_t&>* mSubject;
-    tObserver<const uint32_t&>* mObserver;
+    tSubject<const size_t&>* mSubject;
+    tObserver<const size_t&>* mObserver;
     bool mPaused;
 
 public:
-    DetachAllAndAttachExistingDuringNotify(tSubject<const uint32_t&>* newSubject, tObserver<const uint32_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
+    DetachAllAndAttachExistingDuringNotify(tSubject<const size_t&>* newSubject, tObserver<const size_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
 
     void reset()
     {
         mPaused = false;
     }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         if (!mPaused)
@@ -220,21 +220,21 @@ public:
 };
 
 class AttachExistingDuringNotify
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 public:
-    tSubject<const uint32_t&>* mSubject;
-    tObserver<const uint32_t&>* mObserver;
+    tSubject<const size_t&>* mSubject;
+    tObserver<const size_t&>* mObserver;
     bool mPaused;
 
 public:
-    AttachExistingDuringNotify(tSubject<const uint32_t&>* newSubject, tObserver<const uint32_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
+    AttachExistingDuringNotify(tSubject<const size_t&>* newSubject, tObserver<const size_t&>* newObserver) : mSubject(newSubject), mObserver(newObserver), mPaused(false) { }
 
     void reset()
     {
         mPaused = false;
     }
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
 #pragma unused(msg)
         if (!mPaused)
@@ -247,20 +247,20 @@ public:
 
 
 class tObserverCopyCtorXDuringNotifyXTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
     tSubjectTestClass*  mSource1;
     tSubjectTestClass** mSource2;
-    uint32_t mBase;
-    uint32_t mTrigger;
+    size_t mBase;
+    size_t mTrigger;
 
 public:
-    tObserverCopyCtorXDuringNotifyXTestClass(uint32_t base, tSubjectTestClass* newSource1, tSubjectTestClass** newSource2, uint32_t newTrigger)
+    tObserverCopyCtorXDuringNotifyXTestClass(size_t base, tSubjectTestClass* newSource1, tSubjectTestClass** newSource2, size_t newTrigger)
     : mSource1(newSource1), mSource2(newSource2), mBase(base), mTrigger(newTrigger) { }
     virtual ~tObserverCopyCtorXDuringNotifyXTestClass() { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg + mBase);
 
@@ -272,20 +272,20 @@ public:
 };
 
 class tObserverCopyAssignXDuringNotifyXTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
     tSubjectTestClass* mSource1;
     tSubjectTestClass* mSource2;
-    uint32_t mBase;
-    uint32_t mTrigger;
+    size_t mBase;
+    size_t mTrigger;
 
 public:
-    tObserverCopyAssignXDuringNotifyXTestClass(uint32_t base, tSubjectTestClass* newSource1, tSubjectTestClass* newSource2, uint32_t newTrigger)
+    tObserverCopyAssignXDuringNotifyXTestClass(size_t base, tSubjectTestClass* newSource1, tSubjectTestClass* newSource2, size_t newTrigger)
     : mSource1(newSource1), mSource2(newSource2), mBase(base), mTrigger(newTrigger) { }
     virtual ~tObserverCopyAssignXDuringNotifyXTestClass() { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg + mBase);
 
@@ -298,20 +298,20 @@ public:
 
 #if __cplusplus >= 201103L
 class tObserverMoveCtorXDuringNotifyXTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
     tSubjectTestClass*  mSource1;
     tSubjectTestClass** mSource2;
-    uint32_t mBase;
-    uint32_t mTrigger;
+    size_t mBase;
+    size_t mTrigger;
 
 public:
-    tObserverMoveCtorXDuringNotifyXTestClass(uint32_t base, tSubjectTestClass* newSource1, tSubjectTestClass** newSource2, uint32_t newTrigger)
+    tObserverMoveCtorXDuringNotifyXTestClass(size_t base, tSubjectTestClass* newSource1, tSubjectTestClass** newSource2, size_t newTrigger)
     : mSource1(newSource1), mSource2(newSource2), mBase(base), mTrigger(newTrigger) { }
     virtual ~tObserverMoveCtorXDuringNotifyXTestClass() { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg + mBase);
 
@@ -323,20 +323,20 @@ public:
 };
 
 class tObserverMoveAssignXDuringNotifyXTestClass
-: public tObserver<const uint32_t&>
+: public tObserver<const size_t&>
 {
 protected:
     tSubjectTestClass* mSource1;
     tSubjectTestClass* mSource2;
-    uint32_t mBase;
-    uint32_t mTrigger;
+    size_t mBase;
+    size_t mTrigger;
 
 public:
-    tObserverMoveAssignXDuringNotifyXTestClass(uint32_t base, tSubjectTestClass* newSource1, tSubjectTestClass* newSource2, uint32_t newTrigger)
+    tObserverMoveAssignXDuringNotifyXTestClass(size_t base, tSubjectTestClass* newSource1, tSubjectTestClass* newSource2, size_t newTrigger)
     : mSource1(newSource1), mSource2(newSource2), mBase(base), mTrigger(newTrigger) { }
     virtual ~tObserverMoveAssignXDuringNotifyXTestClass() { }
 
-    virtual void update(const uint32_t& msg)
+    virtual void update(const size_t& msg)
     {
         tSTNotifications.push_back(msg + mBase);
 
@@ -401,7 +401,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -435,7 +435,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -522,7 +522,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -587,7 +587,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -649,7 +649,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -676,7 +676,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -743,7 +743,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -806,7 +806,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -844,7 +844,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -888,7 +888,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -924,7 +924,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -965,7 +965,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -1006,7 +1006,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -1044,7 +1044,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -1082,7 +1082,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
@@ -1117,7 +1117,7 @@ public:
 
         if (tSTNotifications.size() == sizeof(expectedResult) / sizeof(size_t))
         {
-            for (uint32_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
+            for (size_t i = 0; i < sizeof(expectedResult) / sizeof(size_t); i++)
             {
                 assert(tSTNotifications[i] == expectedResult[i]);
             }
