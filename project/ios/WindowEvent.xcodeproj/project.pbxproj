@@ -1,0 +1,199 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2367D86650F4997C9A2B37C7 /* App.cc in Sources */ = {isa = PBXBuildFile; fileRef = FF9F108C134125F36574C510 /* App.cc */; };
+		F3C2BE23749ECCF998663CDE /* Window.cc in Sources */ = {isa = PBXBuildFile; fileRef = 402E536981E312EE1619DA47 /* Window.cc */; };
+		F91C50D78F28418D460BAB70 /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 54B6EB12B867F1111261F221 /* main.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3C48E3A559E0D1851DA98965 /* Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		402E536981E312EE1619DA47 /* Window.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cc; sourceTree = "<group>"; };
+		54B6EB12B867F1111261F221 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		6C0255D6DB06F58BD256F76C /* tObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tObserver.h; sourceTree = "<group>"; };
+		BEB7844C1E6875A3AB8EA938 /* WindowEventExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowEventExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE7F4EFE17AC8DD6ED2FEDC8 /* App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
+		E8850939EC84042BB24847D0 /* WindowEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowEvent.h; sourceTree = "<group>"; };
+		FC91FEC52FBA9E70A29A1452 /* WindowEvent.gyp */ = {isa = PBXFileReference; explicitFileType = sourcecode; path = WindowEvent.gyp; sourceTree = "<group>"; };
+		FF9F108C134125F36574C510 /* App.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = App.cc; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B183D62B2C9D109CE8FB2CB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03F17E9634949F14B5E1F248 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEB7844C1E6875A3AB8EA938 /* WindowEventExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34BB567FFBFDA0B639BB561E /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				FC91FEC52FBA9E70A29A1452 /* WindowEvent.gyp */,
+			);
+			name = Build;
+			sourceTree = "<group>";
+		};
+		6C6E0BE2C00CC790FA87459D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E083E0D888DF3D2E6F985C94 /* examples/WindowEvent */,
+				6C0255D6DB06F58BD256F76C /* tObserver.h */,
+			);
+			name = Source;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		9066F02203F2228DE6199692 = {
+			isa = PBXGroup;
+			children = (
+				6C6E0BE2C00CC790FA87459D /* Source */,
+				03F17E9634949F14B5E1F248 /* Products */,
+				34BB567FFBFDA0B639BB561E /* Build */,
+			);
+			sourceTree = "<group>";
+		};
+		E083E0D888DF3D2E6F985C94 /* examples/WindowEvent */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F108C134125F36574C510 /* App.cc */,
+				CE7F4EFE17AC8DD6ED2FEDC8 /* App.h */,
+				402E536981E312EE1619DA47 /* Window.cc */,
+				3C48E3A559E0D1851DA98965 /* Window.h */,
+				E8850939EC84042BB24847D0 /* WindowEvent.h */,
+				54B6EB12B867F1111261F221 /* main.cc */,
+			);
+			path = examples/WindowEvent;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5CD45929A9AE3786EB99240D /* WindowEventExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61F57395887F74774C80831F /* Build configuration list for PBXNativeTarget "WindowEventExample" */;
+			buildPhases = (
+				18BA6D4066054B1AA80A3757 /* Sources */,
+				B183D62B2C9D109CE8FB2CB4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WindowEventExample;
+			productName = WindowEventExample;
+			productReference = BEB7844C1E6875A3AB8EA938 /* WindowEventExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E31FEE1D57B9493DCCFD765 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0610;
+			};
+			buildConfigurationList = D1EAED0F2DB8871D75B48255 /* Build configuration list for PBXProject "WindowEvent" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 9066F02203F2228DE6199692;
+			projectDirPath = ../common;
+			projectRoot = "";
+			targets = (
+				5CD45929A9AE3786EB99240D /* WindowEventExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18BA6D4066054B1AA80A3757 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2367D86650F4997C9A2B37C7 /* App.cc in Sources */,
+				F3C2BE23749ECCF998663CDE /* Window.cc in Sources */,
+				F91C50D78F28418D460BAB70 /* main.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		20D8E9A16DCB97F62ECB1682 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ../../rsrc/ios/any.plist;
+				INTERMEDIATE_DIR = "$(PROJECT_DERIVED_FILE_DIR)/$(CONFIGURATION)";
+				SDKROOT = iphoneos;
+				SHARED_INTERMEDIATE_DIR = "$(SYMROOT)/DerivedSources/$(CONFIGURATION)";
+				SYMROOT = ../../build/ios;
+			};
+			name = debug;
+		};
+		56E5F381732BDE1B56185325 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_STRICT_ALIASING = NO;
+				GCC_UNROLL_LOOPS = NO;
+				HEADER_SEARCH_PATHS = (
+					../../,
+					../../examples/WindowEvent/,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_NO_PIE = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = WindowEventExample;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_PREFIX = "";
+			};
+			name = debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		61F57395887F74774C80831F /* Build configuration list for PBXNativeTarget "WindowEventExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56E5F381732BDE1B56185325 /* debug */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = debug;
+		};
+		D1EAED0F2DB8871D75B48255 /* Build configuration list for PBXProject "WindowEvent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20D8E9A16DCB97F62ECB1682 /* debug */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E31FEE1D57B9493DCCFD765 /* Project object */;
+}
