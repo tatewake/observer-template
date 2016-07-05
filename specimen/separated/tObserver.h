@@ -37,14 +37,14 @@ template<class T> class tObserver;
 template<class T>
 class tObserver
 {
-protected:
+private:
     typedef tSubject<T>             SubjectType;
     typedef std::list<SubjectType*> ListType;
 
-protected:
+private:
     ListType    mSubjects;
 
-protected:
+private:
     void InformallyAttachSubject(SubjectType* newSub);
     void InformallyDetachSubject(SubjectType* newSub);
     void InformallyDetachAllSubjects();

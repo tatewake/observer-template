@@ -37,17 +37,17 @@ template<class T> class tObserver;
 template<class T>
 class tSubject
 {
-protected:
+private:
     typedef tObserver<T>                ObserverType;
     typedef std::list<ObserverType*>    ListType;
 
-protected:
+private:
     ListType    mObservers;
     ListType    mNewObservers;
     bool        mCurrentlyNotifying;
     bool*       mSubjectDeletedPtr;
 
-protected:
+private:
     void InformallyAttachObserver(ObserverType* newOb);
     void InformallyDetachObserver(ObserverType* newOb);
     void FormallyAttachIfNotNull(const ListType& observers);
@@ -79,14 +79,14 @@ public:
 template<class T>
 class tObserver
 {
-protected:
+private:
     typedef tSubject<T>             SubjectType;
     typedef std::list<SubjectType*> ListType;
 
-protected:
+private:
     ListType    mSubjects;
 
-protected:
+private:
     void InformallyAttachSubject(SubjectType* newSub);
     void InformallyDetachSubject(SubjectType* newSub);
     void InformallyDetachAllSubjects();
