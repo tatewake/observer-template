@@ -1,0 +1,178 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03E9B9AC36AF8BC93FB0B384 /* tSubjectTests.cc in Sources */ = {isa = PBXBuildFile; fileRef = 610ED38D7CAC4828BE289B01 /* tSubjectTests.cc */; };
+		CEE8C9067D3FC1283522AB8F /* tObserverTests.cc in Sources */ = {isa = PBXBuildFile; fileRef = 9CF14285A5A001AA99189A09 /* tObserverTests.cc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1B60B9960A5FD98A12160565 /* tObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tObserver.h; sourceTree = "<group>"; };
+		4917E17F116D4F3C9696613E /* ObserverTemplateTests.gyp */ = {isa = PBXFileReference; explicitFileType = sourcecode; path = ObserverTemplateTests.gyp; sourceTree = "<group>"; };
+		4AB74005314541FE10388E09 /* ObserverTemplateTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObserverTemplateTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		610ED38D7CAC4828BE289B01 /* tSubjectTests.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tSubjectTests.cc; sourceTree = "<group>"; };
+		9CF14285A5A001AA99189A09 /* tObserverTests.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tObserverTests.cc; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BC957AD990DC518F4F15C7DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E20C4C7DD8E9F037693D1D9 = {
+			isa = PBXGroup;
+			children = (
+				A24654D6CF1EF6C920473ECF /* Source */,
+				98104C8F2457B9EBD4534646 /* Products */,
+				D1E577FA2B6627271CA3C257 /* Build */,
+			);
+			sourceTree = "<group>";
+		};
+		98104C8F2457B9EBD4534646 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4AB74005314541FE10388E09 /* ObserverTemplateTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A24654D6CF1EF6C920473ECF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1B60B9960A5FD98A12160565 /* tObserver.h */,
+				9CF14285A5A001AA99189A09 /* tObserverTests.cc */,
+				610ED38D7CAC4828BE289B01 /* tSubjectTests.cc */,
+			);
+			name = Source;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		D1E577FA2B6627271CA3C257 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				4917E17F116D4F3C9696613E /* ObserverTemplateTests.gyp */,
+			);
+			name = Build;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E409A959087B80B40A27E17A /* ObserverTemplateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAD77BD04C6AFB09020EC5BD /* Build configuration list for PBXNativeTarget "ObserverTemplateTests" */;
+			buildPhases = (
+				6CDFEBF2435C35A263C7402B /* Sources */,
+				BC957AD990DC518F4F15C7DD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ObserverTemplateTests;
+			productName = ObserverTemplateTests;
+			productReference = 4AB74005314541FE10388E09 /* ObserverTemplateTests.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		481E5F4E95BB531D0BE382BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 0610;
+			};
+			buildConfigurationList = FD9E457B6EC5BF96389FFDE9 /* Build configuration list for PBXProject "ObserverTemplateTests" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 5E20C4C7DD8E9F037693D1D9;
+			projectDirPath = ../common;
+			projectRoot = "";
+			targets = (
+				E409A959087B80B40A27E17A /* ObserverTemplateTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6CDFEBF2435C35A263C7402B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE8C9067D3FC1283522AB8F /* tObserverTests.cc in Sources */,
+				03E9B9AC36AF8BC93FB0B384 /* tSubjectTests.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		920D520D40F1A349FD97C4B2 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_STRICT_ALIASING = NO;
+				GCC_UNROLL_LOOPS = NO;
+				HEADER_SEARCH_PATHS = ../../;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_NO_PIE = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = ObserverTemplateTests;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_PREFIX = "";
+			};
+			name = debug;
+		};
+		B03D8355D3D8240221B1159B /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ../../rsrc/ios/any.plist;
+				INTERMEDIATE_DIR = "$(PROJECT_DERIVED_FILE_DIR)/$(CONFIGURATION)";
+				SDKROOT = iphoneos;
+				SHARED_INTERMEDIATE_DIR = "$(SYMROOT)/DerivedSources/$(CONFIGURATION)";
+				SYMROOT = ../../build/ios;
+			};
+			name = debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAD77BD04C6AFB09020EC5BD /* Build configuration list for PBXNativeTarget "ObserverTemplateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				920D520D40F1A349FD97C4B2 /* debug */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = debug;
+		};
+		FD9E457B6EC5BF96389FFDE9 /* Build configuration list for PBXProject "ObserverTemplateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B03D8355D3D8240221B1159B /* debug */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 481E5F4E95BB531D0BE382BE /* Project object */;
+}
